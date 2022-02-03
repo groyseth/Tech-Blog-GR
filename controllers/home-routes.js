@@ -1,31 +1,42 @@
 const router = require('express').Router();
-// const { Gallery, Painting } = require('../models');
+const { Post, Comment } = require('../models');
 
 // GET all galleries for homepage
-router.get('/', async (req, res) => {
+// router.get('/', async (req, res) => {
+  router.get('/', async (req, res) => {
+  //   try {
+  //     // console.log(res);
+  //   res.render('all-posts', {
+       
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.status(500).json(err);
+  //   }
+  // });
   try {
-  res.render('homepage', {
-     
+    const postData = await Post.findAll(
+      // include: [
+      //   {
+      //     model: Painting,
+      //     attributes: ['filename', 'description'],
+      //   },
+      // ],
+    );
+
+    const posts = postData.map((homePost) =>
+      homePost.get({ plain: true })
+    );
+
+    res.render('all-posts', {
+      posts,
+      // loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
-
-//     const galleries = dbGalleryData.map((gallery) =>
-//       gallery.get({ plain: true })
-//     );
-//     // Send over the 'loggedIn' session variable to the 'homepage' template
-//     res.render('homepage', {
-//       galleries,
-//       loggedIn: req.session.loggedIn,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
 
 // // GET one gallery
 // router.get('/gallery/:id', async (req, res) => {
