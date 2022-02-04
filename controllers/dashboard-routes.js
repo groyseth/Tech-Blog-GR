@@ -3,18 +3,18 @@ const router = require('express').Router();
 const { Post } = require("../models");
 
 
-// router.get('/', (req, res) => {
-//     // If the user is already logged in, redirect to the homepage
-//     // if (req.session.loggedIn) {
-//     //   res.redirect('/');
-//     //   return;
-//     // }
-//     // Otherwise, render the 'login' template
-//     res.render('dashboard');
-// })
-router.get('/', function(req, res) {
-    res.render('dashboard', {layout: 'dashboard'});
-});
+router.get('/', (req, res) => {
+    // If the user is already logged in, redirect to the homepage
+    // if (req.session.loggedIn) {
+    //   res.redirect('/');
+    //   return;
+    // }
+    // Otherwise, render the 'login' template
+    res.render('dashboard');
+})
+// router.get('/', function(req, res) {
+//     res.render('dashboard', {layout: 'dashboard'});
+// });
 
 // router.get('/post/:id', async (req, res) => {
 //     try {

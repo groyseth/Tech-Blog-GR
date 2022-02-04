@@ -1,12 +1,26 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.post('/', async (req, res) => {
+
+
+
+router.get('/', (req, res) => {
+  // If the user is already logged in, redirect to the homepage
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  // Otherwise, render the 'login' template
+  // res.render('login');
+});
+
+
+router.post('/signup', async (req, res) => {
     try {
       const userData = await User.create(req.body);
       console.log(userData);
       req.session.save(() => {
-        req.session.id = userData.id;
+        req.session.user_id = userData.id;
         req.session.logged_in = true;
   
         res.status(200).json({message: 'Successfully created User', userData});

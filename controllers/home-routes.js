@@ -73,22 +73,22 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
-
-  res.render('signup');
+  res.render('login');
+  // res.redirect('/signup');
 });
 
 
-// router.get('/signup', (req, res) => {
-//   // If the user is already logged in, redirect to the homepage
-//   // if (req.session.loggedIn) {
-//   //   res.redirect('/');
-//   //   return;
-//   // }
-//   // Otherwise, render the 'login' template
-//   res.render('signup');
-// });
+router.get('/signup', (req, res) => {
+  // If the user is already logged in, redirect to the homepage
+  if (req.session.logged_In) {
+    res.redirect('/dashboard');
+    return;
+  }
+  // Otherwise, render the 'login' template
+  res.render('signup');
+});
 module.exports = router;
 

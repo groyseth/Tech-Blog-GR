@@ -16,11 +16,11 @@
         <!-- Conditionally render login or logout links -->
     
         {{#if logged_in}}
-        <a href="/logout">Logout</a> 
-        <button class="no-button" id="logout"></button>
+        <button id="logout-link" class="btn-no-style">Logout</button>
+        <script src="/js/logout.js"></script>
         {{else}}
+
         <a href="/login">Login</a>
-       
         <div class="px-1">
        <a href="/dashboard">Dashboard </a>
        <a href="/">Home</a>
@@ -34,6 +34,8 @@
   <main class="container container-fluid mt-5 ">
         {{{ body }}}
       </main>
+
+  
 
   </body>
 
