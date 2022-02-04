@@ -1,0 +1,18 @@
+<div class="container bg-secondary text-white">
+    
+<h1>View Posts</h1>
+{{#each allPost as |post|}}
+<div>
+
+<p1>Title of post:  {{title}}</p1><br>
+<p1>Post text:  {{body}}</p1>
+{{!-- {{format_date}} --}}
+</div>
+{{/each}}
+{{!-- </div> --}}
+
+{{!-- <div>
+<a href="/api/post">
+<button class="no-button" id="logout">create a post</button>
+</a>  --}}
+{{!-- </div> --}}

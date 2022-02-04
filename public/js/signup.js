@@ -12,9 +12,10 @@ const signupFormHandler = async function(event) {
     }),
     headers: { 'Content-Type': 'application/json' },
   });
-
+// change dirct
   if (response.ok) {
-    document.location.replace('/dashboard');
+    console.log(response);
+    document.location.replace('/');
   } else {
     alert('Failed to sign up');
   }
