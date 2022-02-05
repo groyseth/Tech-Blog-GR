@@ -12,29 +12,36 @@
         
         <a href="/" class="d-flex justify-content-center">Tech Blog!</a>
       </h1>
+      {{!-- {{#if logged_in}} --}}
       <nav class="d-flex justify-content-center ">
         <!-- Conditionally render login or logout links -->
     
         {{#if logged_in}}
-        <button id="logout-link" class="btn-no-style">Logout</button>
         <a href="/dashboard">Dashboard </a>
-       <a href="/">Home</a>
-        <script src="/js/logout.js"></script>
-        {{else}}
-
+        <a href="/">Home</a>
         <a href="/login">Login</a>
+       <a href="/api/post">make a post</a>
+        {{/if}}
+ {{!-- <button id="logout-link" class="btn-no-style">Logout</button>
+        <script src="/js/logout.js"></script> --}}
+        
         <div class="px-1">
        <a href="/dashboard">Dashboard </a>
        <a href="/">Home</a>
-        {{/if}}
+       <a href="/api/post">make a post</a>
        </div>
+
       </nav>
+       
     </header>
+{{!-- <a href="/api/post">make a post</a> --}}
 
-
-
+{{!-- user = loggedin user by id --}}
   <main class="container container-fluid mt-5 ">
-        {{{ body }}}
+      <h1 class="d-flex justify-content-center">dashboard</h1>
+      {{!-- {{#if logged_in}} --}}
+        {{{ body }}} 
+      {{!-- {{/if}} --}}
       </main>
 
   

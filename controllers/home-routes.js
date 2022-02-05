@@ -6,14 +6,14 @@ const withAuth = require('../utils/auth');
   
     try {
       // Get all projects and JOIN with user data
-      const postData = await Post.findAll({
-        include: [
-          {
-            model: User,
-            attributes: ['username'],
-          },
-        ],
-      });
+      const postData = await Post.findAll();
+      //   include: [
+      //     {
+      //       model: User,
+      //       attributes: ['username'],
+      //     },
+      //   ],
+      // });
 
     const posts = postData.map((homePost) =>
       homePost.get({ plain: true })
@@ -29,29 +29,31 @@ const withAuth = require('../utils/auth');
   }
 });
 
-router.get('/post/:id', async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.title, {
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
-    const allPost = postData.get({ plain: true });
+// router.get('/post/:id', async (req, res) => {
+//   try {
+//     const postData = await Post.findAll({
+//       where: 
+//       {
+//         id: req.params.id
+//       }
 
-    res.render('all-posts', {
-      ...allPost,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     });
+      
+//     const allPost = postData.map(post=>post.get({ plain: true }));
+//     console.log(allPost);
+
+//     res.render('all-posts-admin', {
+//       layout:'dashboard',
+//       allPost,
+//       logged_in: req.session.logged_in
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/',  async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.id, {

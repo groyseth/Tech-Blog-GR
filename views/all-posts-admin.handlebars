@@ -1,0 +1,11 @@
+<div class="container bg-secondary text-white">
+    
+<h1>View Posts</h1>
+{{#each allPost as |post|}}
+<div>
+
+<p1>Title of post:  {{post.title}}</p1><br>
+<p1>Post text:  {{post.body}}</p1>
+{{!-- {{format_date}} --}}
+</div>
+{{/each}}
