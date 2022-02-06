@@ -1,20 +1,25 @@
 <div class="container bg-secondary text-white">
-
-    <h1>View Posts</h1>
-    {{#each posts as |post|}}
+{{!-- <a href="/api/comment"> --}}
+    <h1>View Post</h1>
+    {{#each postInfo as |post|}}
     <div>
+        <a href="/api/comment">
+        <p1>{{user}} author</p1><br>
         <p1>Title of post: {{post.title}}</p1><br>
         <p1>Post text: {{post.body}}</p1>
         {{!-- {{format_date post.theDate}} --}}
+        <p1>{{post.username}}</p1>
+    </a>
     </div>
     {{/each}}
+    
 
 
     
 
 <div>
 
-    <a href="/api/post">
+    {{!-- <a href="/api/post">
         <button class="no-button" id="logout">create a post</button>
-    </a>
+    </a> --}}
 </div>

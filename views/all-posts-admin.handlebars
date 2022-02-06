@@ -1,9 +1,10 @@
 <div class="container bg-secondary text-white">
     
 <h1>View Posts</h1>
-{{#each allPost as |post|}}
+{{!-- {{#each allPost as |post|}} --}}
+{{#each allPostings as |post|}}
 <div>
-
+<h1>Author {{post.user.username}}</h1>
 <p1>Title of post:  {{post.title}}</p1><br>
 <p1>Post text:  {{post.body}}</p1>
 {{!-- {{format_date}} --}}

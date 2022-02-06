@@ -15,18 +15,21 @@
       <nav class="d-flex justify-content-center ">
         <!-- Conditionally render login or logout links -->
     
-        {{#if logged_in}}
+        
+        
+        
+      {{#if loggedIn}}
+        
         <button id="logout-link" class="btn-no-style">Logout</button>
+        <script src="/js/logout.js"></script>
         <a href="/dashboard">Dashboard </a>
        <a href="/">Home</a>
-        <script src="/js/logout.js"></script>
-        {{else}}
-
-        <a href="/login">Login</a>
-        <div class="px-1">
+         {{else}}
+          <a href="/login">Login</a>
+        {{!-- <div class="px-1"> --}}
        <a href="/dashboard">Dashboard </a>
        <a href="/">Home</a>
-        {{/if}}
+       {{/if}}
        </div>
       </nav>
     </header>
@@ -38,7 +41,8 @@
       </main>
 
   
-
+<button id="logout-link" class="btn-no-style">Logout</button>
+        <script src="/js/logout.js"></script>
   </body>
 
 </html>

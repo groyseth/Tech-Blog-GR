@@ -2,75 +2,110 @@ const router = require('express').Router();
 const { Post, Comment, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-  router.get('/', async (req, res) => {
-  
-    try {
-      // Get all projects and JOIN with user data
-      const postData = await Post.findAll();
-      //   include: [
-      //     {
-      //       model: User,
-      //       attributes: ['username'],
-      //     },
-      //   ],
-      // });
 
-    const posts = postData.map((homePost) =>
-      homePost.get({ plain: true })
+
+
+
+
+router.get('/', async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const postInfo = postData.map((allInPosts) =>
+      allInPosts.get({ plain: true })
     );
 
     res.render('all-posts', {
-      posts,
-      logged_in: req.session.logged_in 
+      postInfo,
+      loggedIn: req.session.logged_In,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
+//   router.get('/', async (req, res) => {
+  
+//     try {
+//       // Get all projects and JOIN with user data
+//       const postData = await Post.findAll();
+//     //   const postData = await Post.findByPk(req.params.id, {
+//     //     include: {
+//     //         model: User,
+//     //     }
+//     // });
+    
+//       //   include: [
+//       //     {
+//       //       model: User,
+//       //       attributes: ['username'],
+//       //     },
+//       //   ],
+//       // });
 
-// router.get('/post/:id', async (req, res) => {
-//   try {
-//     const postData = await Post.findAll({
-//       where: 
-//       {
-//         id: req.params.id
-//       }
+//     const posts = postData.map((homePost) =>
+//       homePost.get({ plain: true })
+//     );
 
-//     });
-      
-//     const allPost = postData.map(post=>post.get({ plain: true }));
-//     console.log(allPost);
-
-//     res.render('all-posts-admin', {
-//       layout:'dashboard',
-//       allPost,
-//       logged_in: req.session.logged_in
+//     res.render('all-posts', {
+//       posts,
+//       logged_in: req.session.logged_in 
 //     });
 //   } catch (err) {
+//     console.log(err);
 //     res.status(500).json(err);
 //   }
 // });
 
-
-router.get('/',  async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Post }],
+    const postData = await Post.findAll({
+      where: 
+      {
+        id: req.params.id
+      }
+
     });
+      
+    const allPost = postData.map(post=>post.get({ plain: true }));
+    console.log(allPost);
 
-    const user = userData.get({ plain: true });
-
-    res.render('dashboard', {
-      ...user,
-      logged_in: true
+    res.render('all-posts-admin', {
+      layout:'dashboard',
+      allPost,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+
+// router.get('/',  async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.id, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Post }],
+//     });
+
+//     const user = userData.get({ plain: true });
+
+//     res.render('dashboard', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -92,5 +127,7 @@ router.get('/signup', (req, res) => {
   // Otherwise, render the 'login' template
   res.render('signup');
 });
+
+
 module.exports = router;
 
