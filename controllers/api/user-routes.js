@@ -7,7 +7,7 @@ const { User } = require('../../models');
 router.get('/', (req, res) => {
   // If the user is already logged in, redirect to the homepage
   if (req.session.logged_In) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
   // Otherwise, render the 'login' template
@@ -21,7 +21,7 @@ router.post('/signup', async (req, res) => {
       console.log(userData);
       req.session.save(() => {
         // req.session.user_id = userData.id;
-        req.session.loggedIn = true;
+        req.session.logged_In = true;
   
         res.status(200).json({message: 'Successfully created User', userData});
       });
@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       // req.session.user_id = userData.id;
-      req.session.loggedIn = true;
+      req.session.logged_In = true;
       console.log(req.session);
       res.json({ user: userData, message: 'You are now logged in!' });
     });
@@ -63,7 +63,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_In) {
     req.session.destroy(() => {
       res.json({ message: 'You are now logged OUT!' }).status(204).end();
     });
