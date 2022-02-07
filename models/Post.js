@@ -6,8 +6,19 @@ class Post extends Model {}
 Post.init(
   {
     title: DataTypes.STRING,
-    body: DataTypes.STRING
+    body: DataTypes.STRING,
+
+  //    username: {
+  //   type: DataTypes.STRING,
+  //   references: {
+  //     model: 'user',
+  //     key: 'id',
+  //   },
+  // },
   },
+  
+ 
+
   {
     sequelize
   }

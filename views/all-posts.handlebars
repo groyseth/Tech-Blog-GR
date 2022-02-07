@@ -3,12 +3,12 @@
     <h1>View Post</h1>
     {{#each postInfo as |post|}}
     <div>
-        <a href="/api/comment">
-        <p1>{{user}} author</p1><br>
+        <a href="/post/{{post.id}}">
+        <p1>author: {{post.User.username}}</p1><br>
         <p1>Title of post: {{post.title}}</p1><br>
         <p1>Post text: {{post.body}}</p1>
         {{!-- {{format_date post.theDate}} --}}
-        <p1>{{post.username}}</p1>
+       
     </a>
     </div>
     {{/each}}

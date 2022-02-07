@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const withAuth = require('../utils/auth');
 const { Post } = require("../models");
 
 
@@ -12,8 +12,13 @@ const { Post } = require("../models");
 //     // Otherwise, render the 'login' template
 //     res.render('dashboard');
 // })
-router.get('/', function(req, res) {
-    res.render('all-posts-admin', {layout: 'dashboard'});
+router.get('/',  function(req, res) {
+    if( req.session.logged_In){
+    res.render('all-posts-admin', {layout: 'dashboard', loggedIn: req.session.logged_In});
+    // loggedIn: req.session.logged_In
+    } else{
+      res.redirect('/')
+    }
 });
 
 // router.get('/', async (req, res) => {
@@ -68,30 +73,34 @@ module.exports = router;
 
 router.get('/post/:id', async (req, res) => {
     try {
-      const postData = await Post.findByPk(req.params.id, {
-        include: [
-            {
-                model: User,
-            },
-            {
-                model: Comment,
-                include: {
-                    model: User,
-                }
-            },
-        ]
-    });
-
+      const postData = await Post.findAll( {
+        where : {
+          userId: req.session.user_id,
+        },
         
-      // const allPost = postData.map(post=>post.get({ plain: true }));
-      // console.log(allPost);
-      const allPostings = postData.get({ plain: true });
+        // include: 
+        // [
+        //     {
+        //         model: User,
+        //         attributes: 'username'
+        //     },
+        //     // {
+        //         // model: Comment,
+            
+        // ]
+    });
+// console.log(postData);
+        //single post delete
+      const allPost = postData.map(post=>post.get({ plain: true }));
+      console.log(allPost);
+      // const allPostings = postData.get({ plain: true });
 // const comments = post.comments;
   
       res.render('all-posts-admin', {
         layout:'dashboard',
-        allPostings,
-        logged_in: req.session.logged_in
+        ...allPost,
+        // allPost,
+        loggedIn: req.session.logged_In
       });
     } catch (err) {
       res.status(500).json(err);

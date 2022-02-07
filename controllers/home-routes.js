@@ -21,9 +21,10 @@ router.get('/', async (req, res) => {
     const postInfo = postData.map((allInPosts) =>
       allInPosts.get({ plain: true })
     );
-
+    console.log(postInfo);
     res.render('all-posts', {
       postInfo,
+
       loggedIn: req.session.logged_In,
     });
   } catch (err) {
@@ -66,7 +67,7 @@ router.get('/', async (req, res) => {
 
 router.get('/post/:id', async (req, res) => {
   try {
-    const postData = await Post.findAll({
+    const postData = await Post.findOne({
       where: 
       {
         id: req.params.id
@@ -74,12 +75,14 @@ router.get('/post/:id', async (req, res) => {
 
     });
       
-    const allPost = postData.map(post=>post.get({ plain: true }));
-    console.log(allPost);
+    const allPost = postData.get({ plain: true });
+    // const allPost = postData.get({ plain: true });
+    // console.log(allPost);
 
-    res.render('all-posts-admin', {
-      layout:'dashboard',
-      allPost,
+    res.render('single-post', {
+      // layout:'main',
+      // ...allPost,
+      post: allPost,
       loggedIn: req.session.logged_in
     });
   } catch (err) {

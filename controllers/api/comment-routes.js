@@ -2,19 +2,43 @@ const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
 const { Post,User, Comment } = require('../../models');
 
-router.get('/', (req, res) => {
-    // If the user is already logged in, redirect to the homepage
-    if (req.session.logged_In) {
-      res.redirect('/');
-      return;
-    }
-    // Otherwise, render the 'login' template
-    res.render('single-post');
-})
+// router.get('/', (req, res) => {
+//     // If the user is already logged in, redirect to the homepage
+//     if (req.session.logged_In) {
+//       res.redirect('/');
+//       return;
+//     }
+//     // Otherwise, render the 'login' template
+//     res.render('single-post');
+// })
 // router.get('/', withAuth, function(req, res) {
 //   res.render('single-post', {layout: 'dashboard'});
 // });
-
+router.post('/',  async (req, res) => {
+  try {
+    const commentPost = await Post.create({
+      body: req.body.body,
+      userId: req.session.user_id,
+      
+      // ...req.body,
+      // user_id: req.session.user_id,
+      // postId: req.session.postId
+      // include: [
+      //   {
+      //     model: User,
+      //     attributes: ['username'],
+      //   },
+      // ],
+    // });
+    });
+    
+    // console.log(commentPost);
+      
+    res.status(200).json(commentPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 router.post('/',  async (req, res) => {
     try {
@@ -31,7 +55,7 @@ router.post('/',  async (req, res) => {
   //   }),
   // },
       })
-      // console.log(comment);
+      console.log(comment);
         
       res.status(200).json(comment);
     } catch (err) {

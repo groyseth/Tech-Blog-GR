@@ -1,6 +1,18 @@
+<div>
+  
+   <div>
+       
+        {{!-- <p1>author: {{post.User.username}}</p1><br> --}}
+        <p1>Title of post: {{post.title}}</p1><br>
+        <p1>Post text: {{post.body}}</p1>
+        {{!-- {{format_date post.theDate}} --}}
+       
+    
+    </div>
+</div>
 <form id="new-comment-form">
  
-  <div class="form-group" id="posttId">
+  <div class="form-group" id="postId">
     <label for="exampleInputPassword1">leave a comment</label>
     <input type="textarea" class="form-control" id="commentBody">
   </div>
@@ -8,7 +20,7 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-{{User.username}}
+{{!-- {{User.username}} --}}
 {{!-- {{body}} --}}
 
 <script src="/js/comment.js"></script>
