@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
-const { Post } = require("../models");
+const { Post, User } = require("../models");
 
 
 // router.get('/', (req, res) => {
@@ -69,13 +69,13 @@ router.get('/',  function(req, res) {
 //   }
 // });
 
-module.exports = router;
+// module.exports = router;
 
 router.get('/post/:id', async (req, res) => {
     try {
       const postData = await Post.findAll( {
         where : {
-          userId: req.session.user_id,
+          userId: req.session.id,
         },
         
         // include: 
@@ -96,12 +96,13 @@ router.get('/post/:id', async (req, res) => {
       // const allPostings = postData.get({ plain: true });
 // const comments = post.comments;
   
-      res.render('all-posts-admin', {
-        layout:'dashboard',
-        ...allPost,
-        // allPost,
-        loggedIn: req.session.logged_In
-      });
+      // res.render('all-posts-admin', {
+      //   layout:'dashboard',
+      //   ...allPost,
+      //   // allPost,
+      //   // loggedIn: req.session.logged_In
+      // });
+      res.json(allPost)
     } catch (err) {
       res.status(500).json(err);
     }
