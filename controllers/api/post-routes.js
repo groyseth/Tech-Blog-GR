@@ -40,7 +40,7 @@ router.post('/',  async (req, res) => {
       const newPost = await Post.create({
         title: req.body.title,
         body: req.body.body,
-        userId: req.session.user_id
+        userId: req.session.user_id,
         
         // ...req.body,
         // user_id: req.session.user_id,

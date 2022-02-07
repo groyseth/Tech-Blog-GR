@@ -7,7 +7,7 @@ Post.init(
   {
     title: DataTypes.STRING,
     body: DataTypes.STRING,
-
+    userId: DataTypes.STRING,
   //    username: {
   //   type: DataTypes.STRING,
   //   references: {
