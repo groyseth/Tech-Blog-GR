@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
-const { Post, User } = require("../models");
+const { Post, User, Comment } = require("../models");
 
 
 // router.get('/', (req, res) => {
@@ -12,35 +12,58 @@ const { Post, User } = require("../models");
 //     // Otherwise, render the 'login' template
 //     res.render('dashboard');
 // })
-router.get('/',  function(req, res) {
-    if( req.session.logged_In){
-    res.render('all-posts-admin', {layout: 'dashboard', loggedIn: req.session.logged_In});
-    // loggedIn: req.session.logged_In
-    } else{
-      res.redirect('/')
-    }
-});
-
-// router.get('/', async (req, res) => {
-//     try {
-//       const postData = await Post.findall();
-//         include: [
-//           {
-//             model: Post,
-//             attributes: ['title', 'body'],
-//           },
-//         ],
-//       });
-//       const allPost = postData.get({ plain: true });
-  
-//       res.render('dashboard', {
-//         ...allPost,
-//         logged_in: req.session.logged_in
-//       });
-//     } catch (err) {
-//       res.status(500).json(err);
+// router.get('/',  function(req, res) {
+//     if( req.session.logged_In){
+//     res.render('all-posts-admin', {layout: 'dashboard', loggedIn: req.session.logged_In});
+//     // loggedIn: req.session.logged_In
+//     } else{
+//       res.redirect('/')
 //     }
-//   });
+// });
+
+router.get('/', async (req, res) => {
+  if (req.session.loggedIn) {
+          res.redirect('/');
+          return;
+        }
+    try {
+      const postData = await Post.findAll({
+        where: 
+              {
+                userId: req.session.user_id
+              },
+      // changed userid 
+        include: [
+          {
+            model: Comment,
+            attributes: ['body'],
+            include:[
+              {
+                model: User,
+                attributes: ['username']
+              }
+            ]
+          },
+          {
+            model: User,
+            attributes: ['username']
+          }
+        ],
+      });
+        
+      // });
+      const allPost = postData.map(post => post.get({ plain: true }));
+      console.log(allPost);
+      res.render('all-posts-admin', {
+        layout: ('dashboard'),
+        allPost,
+        logged_in: req.session.loggedIn
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
 
 
 // router.get('/', async (req, res) => {
@@ -71,41 +94,27 @@ router.get('/',  function(req, res) {
 
 // module.exports = router;
 
-router.get('/post/:id', async (req, res) => {
-    try {
-      const postData = await Post.findAll( {
-        where : {
-          userId: req.session.id,
-        },
+// router.get('/post/:id', async (req, res) => {
+//     try {
+//       const postData = await Post.findAll( {
+//         where : {
+//           userId: req.session.id,
+//         },
         
-        // include: 
-        // [
-        //     {
-        //         model: User,
-        //         attributes: 'username'
-        //     },
-        //     // {
-        //         // model: Comment,
-            
-        // ]
-    });
-// console.log(postData);
-        //single post delete
-      const allPost = postData.map(post=>post.get({ plain: true }));
-      console.log(allPost);
-      // const allPostings = postData.get({ plain: true });
-// const comments = post.comments;
+      
+//     });
+// // console.log(postData);
+//         //single post delete
+//       const allPost = postData.map(post=>post.get({ plain: true }));
+//       console.log(allPost);
+//       // const allPostings = postData.get({ plain: true });
+// // const comments = post.comments;
   
-      // res.render('all-posts-admin', {
-      //   layout:'dashboard',
-      //   ...allPost,
-      //   // allPost,
-      //   // loggedIn: req.session.logged_In
-      // });
-      res.json(allPost)
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+      
+//       res.json(allPost)
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
   
 module.exports = router;

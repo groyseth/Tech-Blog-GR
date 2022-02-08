@@ -16,9 +16,10 @@ const { Post,User, Comment } = require('../../models');
 // });
 router.post('/',  async (req, res) => {
   try {
-    const commentPost = await Post.create({
+    const commentPost = await Comment.create({
       body: req.body.body,
       userId: req.session.user_id,
+      postId: req.body.postId
       
       // ...req.body,
       // user_id: req.session.user_id,
@@ -32,34 +33,37 @@ router.post('/',  async (req, res) => {
     // });
     });
     
-    // console.log(commentPost);
+    console.log(commentPost);
       
     res.status(200).json(commentPost);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
 
-router.post('/',  async (req, res) => {
-    try {
-      const comment = await Comment.create({
-        ...req.body,
-  //       include: [
-  //         {
-  //           model: User,
-  //           attributes: ["username", "userId"],
+// router.post('/',  async (req, res) => {
+//     try {
+//       const comment = await Comment.create({
+//         ...req.body,
+//   //       include: [
+//   //         {
+//   //           model: User,
+//   //           attributes: ["username", "userId"],
 
-  //       // userid: req.session.userid,
+//   //       // userid: req.session.userid,
         
-  //       }];
-  //   }),
-  // },
-      })
-      console.log(comment);
+//   //       }];
+//   //   }),
+//   // },
+//       })
+//       console.log(comment);
         
-      res.status(200).json(comment);
-    } catch (err) {
-      res.status(400).json(err);
-    }
-  });
+//       res.status(200).json(comment);
+//     } catch (err) {
+//       res.status(400).json(err);
+//     }
+//   });
+
+
 module.exports = router;
