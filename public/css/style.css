@@ -52,6 +52,8 @@ main {
 
 a {
   text-decoration: none;
+  color: white;
+  text-shadow: #38302e;
 }
 
 p {
@@ -71,12 +73,12 @@ input {
 }
 
 .btn {
-  font-size: 1.3rem;
+  /* font-size: 1.3rem; */
   text-decoration: none;
   padding: 6px 5px;
-  width: 100%;
+  width: 10%;
   display: block;
-  margin: 5px 0;
+  margin: 5px 20px;
   border-radius: var(--border-radius);
   color: var(--primary);
   border: none;
@@ -103,7 +105,7 @@ input {
 
 .navbar {
   width: 100%;
-  position: fixed;
+  position:static;
   background-color: var(--dark);
 }
 

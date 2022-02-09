@@ -1,18 +1,27 @@
-<div class="container bg-secondary text-white">
+<div>
 {{!-- <a href="/api/comment"> --}}
     <h1>View Post</h1>
     {{#each postInfo as |post|}}
-    <div>
-        <a href="/post/{{post.id}}">
+    <div class="list-group">
+        <a class="list-item" href="/post/{{post.id}}">
         <p1>author: {{post.User.username}}</p1><br>
         <p1>Title of post: {{post.title}}</p1><br>
         <p1>Post text: {{post.body}}</p1>
         {{!-- {{format_date post.theDate}} --}}
+
+         {{#each post.Comments as |comment|}}
+
+        <div>
+            <p1>comments: {{comment.body}}</p1>
+            
+
+        </div>
        
     </a>
     </div>
-    {{/each}}
     
+    {{/each}}
+    {{/each}}
 
 
     

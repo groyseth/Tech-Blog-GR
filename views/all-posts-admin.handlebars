@@ -1,25 +1,32 @@
 <div class="container bg-secondary text-white">
+
+    <h1>View Posts</h1>
+
+    {{#each allPost as |post|}}
+    <div id="postId" class="card">
+
+        <h2>Author: {{post.User.username}}</h2>
+        <p1 id="title">Title of post: {{post.title}}</p1><br>
+        <p1 id="body">Post text: {{post.body}}</p1><br>
+
+        {{!-- <button type="click" id="delete-btn" class="postId" data-id="{{post.id}}">DELETE</button><br> --}}
+        <button class="btn" id="delete-btn" data-id="{{post.id}}">DELETE</button>
+        <button type="submit" id="edit-post-form" class="btn">Update</button>
     
-<h1>View Posts</h1>
-{{!-- {{#each allPost as |post|}} --}}
 
-{{#each allPost as |post|}}
-<div>
-<h2>Author: {{post.User.username}}</h2>
-<p1 id="title">Title of post:  {{post.title}}</p1><br>
-<p1 id="body">Post text:  {{post.body}}</p1><br>
-
-
-{{#each post.Comments as |comment|}}
-<p1>Comments:</p1><br>
-{{!-- <h4>{{comment.User.username}}</h4><br> --}}
-<p1>{{comment.body}}</p1><br>
-{{!-- {{format_date}} --}}
+    
+        {{#each post.Comments as |comment|}}
+        <div>
+        <p1>Comments:</p1><br>
+        {{!-- <h4>{{comment.User.username}}</h4><br> --}}
+        <p1>{{comment.body}}</p1><br>
+       
+        </div>
+    
+    </div>
 </div>
 
-<button type="click" id="delete-btn">DELETE</button><br>
-<button type="submit" id="edit-post-form">Update</button>
-{{/each}}
-{{/each}}
+    {{/each}}
+    {{/each}}
 
-<script src="/js/edit.js"></script>
+    <script src="/js/edit.js"></script>

@@ -11,33 +11,25 @@
   <header class="display-flex justify-space-between align-center p-2 ">
       <h1>
         
-        <a href="/" class="d-flex justify-content-center">Tech Blog!</a>
+        <a href="/" class="d-flex justify-content-center app-title">Tech Blog!</a>
       </h1>
       {{!-- {{#if logged_in}} --}}
-      <nav class="d-flex justify-content-center ">
-        <!-- Conditionally render login or logout links -->
-    
+      <nav class="d-flex justify-content-center navbar">
         
-        
-        <div class="px-1">
-        
-       <a href="/dashboard">Dashboard </a>
-       <a href="/">Home</a>
-       <a href="/api/post">make a post</a>
+       <a class="btn" href="/dashboard">Dashboard </a>
+       <a class="btn" href="/">Home</a>
+       <a class="btn" href="/api/post">make a post</a>
 
-       </div>
-
+       
       </nav>
        
     </header>
-{{!-- <a href="/api/post">make a post</a> --}}
 
-{{!-- user = loggedin user by id --}}
   <main class="container container-fluid mt-5 ">
-      <h1 class="d-flex justify-content-center">dashboard</h1>
-      {{!-- {{#if logged_in}} --}}
+      <h1 class="d-flex justify-content-center py-4">dashboard</h1>
+     
         {{{ body }}} 
-      {{!-- {{/if}} --}}
+     
       </main>
 
   

@@ -10,9 +10,9 @@
   <header class="display-flex justify-space-between align-center p-2 ">
       <h1>
         
-        <a href="/" class="d-flex justify-content-center">Tech Blog!</a>
+        <a href="/" class="d-flex justify-content-center app-title">Tech Blog!</a>
       </h1>
-      <nav class="d-flex justify-content-center ">
+      <nav class="d-flex justify-content-center navbar">
         <!-- Conditionally render login or logout links -->
     
         
@@ -20,23 +20,23 @@
         
       {{#if loggedIn}}
         
-        <button id="logout-link" class="btn-no-style">Logout</button>
+        <button id="logout-link" class="btn btn-inline">Logout</button>
         <script src="/js/logout.js"></script>
-        <a href="/dashboard">Dashboard </a>
-       <a href="/">Home</a>
+
+        <a class="btn" href="/dashboard">Dashboard </a>
+       <a class="btn" href="/">Home</a>
          {{else}}
-          <a href="/login">Login</a>
-        {{!-- <div class="px-1"> --}}
-       {{!-- <a href="/dashboard">Dashboard </a> --}}
-       <a href="/">Home</a>
+          <a class="btn" href="/login">Login</a>
+       
+       <a class="btn" href="/">Home</a>
        {{/if}}
        </div>
       </nav>
     </header>
 
 
-
-  <main class="container container-fluid mt-5 ">
+{{!-- class="container container-fluid py-4"> --}}
+  <main >
         {{{ body }}}
       </main>
 
