@@ -37,6 +37,11 @@
 
 {{!-- class="container container-fluid py-4"> --}}
   <main >
+     {{#if loggedIn}}
+    <h1>View Post</h1>
+    {{else}}
+    <h3>please log in</h3>
+    {{/if}}
         {{{ body }}}
       </main>
 
