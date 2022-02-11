@@ -3,14 +3,14 @@
     <h1>View Posts</h1>
 
     {{#each allPost as |post|}}
-    <div id="postId" class="card">
+    <div id="postId" class="card txtcolor">
 
         <h2>Author: {{post.User.username}}</h2>
         <p1 id="title">Title of post: {{post.title}}</p1><br>
         <p1 id="body">Post text: {{post.body}}</p1><br>
 
         {{!-- <button type="click" id="delete-btn" class="postId" data-id="{{post.id}}">DELETE</button><br> --}}
-        <button class="btn" id="delete-btn" data-id="{{post.id}}">DELETE</button>
+        <button class="btn delete-btn" data-id="{{post.id}}">DELETE</button>
         <button type="submit" id="edit-post-form" class="btn">Update</button>
     
 

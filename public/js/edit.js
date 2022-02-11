@@ -35,6 +35,11 @@ console.log(id);
 document
   .querySelector('#edit-post-form')
   .addEventListener('submit', editFormHandler);
-document
-  .querySelector('#delete-btn')
-  .addEventListener('click', deleteClickHandler);
+
+var deleteButton = document.querySelectorAll('.delete-btn')
+  deleteButton.forEach(btn => {
+    btn.addEventListener('click', deleteClickHandler);
+  });
+  
+
+
