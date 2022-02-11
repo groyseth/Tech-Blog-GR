@@ -1,27 +1,27 @@
-<div>
+<div class="list-group">
 {{!-- <a href="/api/comment"> --}}
-    
+    <div class="list-item">
     {{#each postInfo as |post|}}
-    <div>
+    
         <a  href="/post/{{post.id}}">
-        <p1>author: {{post.User.username}}</p1><br>
+        <p1 >author: {{post.User.username}}</p1><br>
         <p1>Title of post: {{post.title}}</p1><br>
         <p1>Post text: {{post.body}}</p1>
-        {{!-- {{format_date post.theDate}} --}}
-
-         {{#each post.Comments as |comment|}}
+        {{!-- <p1>{{format_date post.getMonth}}</p1> --}}
 
         <div>
+         {{#each post.Comments as |comment|}}
             <p1>comments: {{comment.body}}</p1>
             
 
+        {{/each}}
         </div>
-       
     </a>
+    {{/each}}
     </div>
     
-    {{/each}}
-    {{/each}}
+   
+    
 
 
     
