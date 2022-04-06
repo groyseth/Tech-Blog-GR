@@ -7,22 +7,23 @@
             <a href="/post/{{post.id}}">
 
 
-                <div class="card" style="width: 18rem;">
+                
+            <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Title: {{post.title}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted"> By:{{post.User.username}}</h6>
                         <p class="card-text">{{post.body}}</p>
-                        {{!-- <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a> --}}
+                       
                     </div>
                 
 
 
                 <div>
                     {{#each post.Comments as |comment|}}
-                    <p1 class="modCom">comments: {{comment.body}}</p1>
-
-
+                    <p1 class="modCom">{{comment.User.username}} commented: <br> {{comment.body}}</p1> <br>
+                    
+                    <p1>Created At:{{comment.createdAt}}</p1>
+                    {{!-- <p1>{{}}</p1> --}}
                     {{/each}}
                 </div>
             </a>

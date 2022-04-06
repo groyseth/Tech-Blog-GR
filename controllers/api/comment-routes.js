@@ -18,9 +18,10 @@ router.post('/', withAuth, async (req, res) => {
   try {
     const commentPost = await Comment.create({
       body: req.body.body,
+     
       userId: req.session.user_id,
       postId: req.body.postId
-      
+     
       // ...req.body,
       // user_id: req.session.user_id,
       // postId: req.session.postId
@@ -32,7 +33,7 @@ router.post('/', withAuth, async (req, res) => {
       // ],
     // });
     });
-    
+    // console.log(body);
     console.log(commentPost);
       
     res.status(200).json(commentPost);

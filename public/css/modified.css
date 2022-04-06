@@ -29,14 +29,16 @@
     text-align: -webkit-center;
 }
 .card{
-    /* padding: 10px; */
+    border: 2px black solid;
+    box-shadow: 2px 2px black;
+    border-radius: 19px 2px;
   
 }
 .card-body{
     padding-bottom: 20%;
 }
 .modCom{
-    top: -50px;
+    /* top: -50px; */
     position: relative;
     word-wrap: break-word;
 }
@@ -45,6 +47,24 @@ a{
 }
 .card-text{
     color: black;
+}
+.btnDash{
+ text-decoration: none;
+ display: inline;
+ margin: 5px 20px;
+ border-radius: var(--border-radius);
+ color: white;
+ border: none;
+ outline: none;
+ background-color: black;
+ box-shadow: 3px 3px var(--dark);
+ transform: translate(-1px, -1px);
+}
+.btnDash:hover{
+    color: var(--primary);
+    background-color: var(--tertiary);
+    transform: translate(0, 0);
+    box-shadow: 2px 2px var(--dark);
 }
 .btn {
     /* font-size: 1.3rem; */

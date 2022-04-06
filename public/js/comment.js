@@ -3,7 +3,7 @@ const commentFormHandler = async function(event) {
 
   const postId = document.querySelector('#postId').dataset.id;
   const body = document.querySelector('#commentBody').value;
-
+// console.log(body);
   if (body) {
     await fetch('/api/comment', {
       method: 'POST',
