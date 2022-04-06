@@ -21,11 +21,11 @@
     /* padding-left: 10px; */
     position: relative;
 }
-.outerAll{
+/* .outerAll{
     border: 2px black solid;
-}
+} */
 .innerAll{
-    border: 2px black solid;
+    /* border: 2px black solid; */
     text-align: -webkit-center;
 }
 .card{
