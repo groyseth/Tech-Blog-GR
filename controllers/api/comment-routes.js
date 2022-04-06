@@ -1,7 +1,7 @@
 const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
 const { Post,User, Comment } = require('../../models');
-
+const withAuth = require('../../utils/auth')
 // router.get('/', (req, res) => {
 //     // If the user is already logged in, redirect to the homepage
 //     if (req.session.logged_In) {
@@ -14,7 +14,7 @@ const { Post,User, Comment } = require('../../models');
 // router.get('/', withAuth, function(req, res) {
 //   res.render('single-post', {layout: 'dashboard'});
 // });
-router.post('/',  async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const commentPost = await Comment.create({
       body: req.body.body,

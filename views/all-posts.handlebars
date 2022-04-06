@@ -1,34 +1,38 @@
-<div class="list-group">
-{{!-- <a href="/api/comment"> --}}
-    <div class="list-item">
-    {{#each postInfo as |post|}}
-    
-        <a  href="/post/{{post.id}}">
-        <p1 >author: {{post.User.username}}</p1><br>
-        <p1>Title of post: {{post.title}}</p1><br>
-        <p1>Post text: {{post.body}}</p1>
-        {{!-- <p1>{{format_date post.getMonth}}</p1> --}}
+<div class="outerAll">
+    {{!-- {{#if }} --}}
+    <a href="/api/comment">
+        <div class="innerAll">
+            {{#each postInfo as |post|}}
 
-        <div>
-         {{#each post.Comments as |comment|}}
-            <p1>comments: {{comment.body}}</p1>
-            
+            <a href="/post/{{post.id}}">
 
-        {{/each}}
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Title: {{post.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> By:{{post.User.username}}</h6>
+                        <p class="card-text">{{post.body}}</p>
+                        {{!-- <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a> --}}
+                    </div>
+                
+
+
+                <div>
+                    {{#each post.Comments as |comment|}}
+                    <p1 class="modCom">comments: {{comment.body}}</p1>
+
+
+                    {{/each}}
+                </div>
+            </a>
+            {{/each}}
+            </div>
         </div>
-    </a>
-    {{/each}}
-    </div>
-    
-   
-    
-
-
-    
 
 
 
-    {{!-- <a href="/api/post">
-        <button class="no-button" id="logout">create a post</button>
-    </a> --}}
+        {{!-- <a href="/api/post">
+            <button class="no-button" id="logout">create a post</button>
+        </a> --}}
 </div>

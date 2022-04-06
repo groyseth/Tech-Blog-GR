@@ -1,0 +1,81 @@
+.jumboContain{
+    border: 2px black solid;
+    background-color: wheat;
+}
+.headTitle{
+    color: white;
+}
+.navStyle{
+    top: 0%;
+    position: absolute;
+    background-color: black;
+    width: 100%;
+}
+.button{
+    padding-left: 10px;
+   
+}
+.nabButtons{
+    align-self: center;
+    right: -34%;
+    /* padding-left: 10px; */
+    position: relative;
+}
+.outerAll{
+    border: 2px black solid;
+}
+.innerAll{
+    border: 2px black solid;
+    text-align: -webkit-center;
+}
+.card{
+    /* padding: 10px; */
+  
+}
+.card-body{
+    padding-bottom: 20%;
+}
+.modCom{
+    top: -50px;
+    position: relative;
+    word-wrap: break-word;
+}
+a{
+    text-decoration: none;
+}
+.card-text{
+    color: black;
+}
+.btn {
+    /* font-size: 1.3rem; */
+    text-decoration: none;
+    /* padding: 6px 5px; */
+    width: 10%;
+    display: inline;
+    /* display: ; */
+    margin: 5px 20px;
+    border-radius: var(--border-radius);
+    color: var(--primary);
+    border: none;
+    outline: none;
+    /* background-color: var(--light-dark); */
+    box-shadow: 3px 3px var(--dark);
+    transform: translate(-1px, -1px);
+  }
+  .btn-logout{
+    width: 16%;
+  }
+  
+  .btn:hover {
+    color: var(--primary);
+    background-color: var(--tertiary);
+    transform: translate(0, 0);
+    box-shadow: 2px 2px var(--dark);
+  }
+  
+  .btn-inline {
+    display: inline;
+  }
+  .navMove{
+    float: right;
+  }

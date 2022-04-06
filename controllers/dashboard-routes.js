@@ -22,10 +22,7 @@ const { Post, User, Comment } = require("../models");
 // });
 
 router.get('/', async (req, res) => {
-  if (req.session.loggedIn) {
-          res.redirect('/');
-          return;
-        }
+ 
     try {
       const postData = await Post.findAll({
         where: 
@@ -57,7 +54,7 @@ router.get('/', async (req, res) => {
       res.render('all-posts-admin', {
         layout: ('dashboard'),
         allPost,
-        logged_in: req.session.loggedIn
+        logged_in: req.session.logged_In
       });
     } catch (err) {
       console.log(err);
